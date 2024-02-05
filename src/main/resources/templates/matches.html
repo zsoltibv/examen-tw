@@ -43,6 +43,7 @@
 <div class="flex-1 p-4 ml-32">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <form th:action="@{/matches/add}" th:method="post" class="flex items-left items-center gap-6 mb-6">
+
             <label for="team1">Team 1:</label>
             <select name="team1" id="team1" class="border rounded py-1 px-2 focus:outline-none focus:border-indigo-500" onchange="updateWinnerOptions()">
                 <!-- Populate dropdown with team options -->
@@ -62,6 +63,7 @@
             <select name="winner" id="winner" class="border rounded py-1 px-2 focus:outline-none focus:border-indigo-500">
                 <!-- Populate dropdown with team options -->
             </select>
+
             <button type="submit" class="bg-indigo-500 text-white py-1 px-3 rounded hover:bg-indigo-600 focus:outline-none">
                 Add Match
             </button>

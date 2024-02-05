@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -54,5 +57,18 @@ public class MatchController {
         matchService.addMatch(team1, team2, winner, isDraw);
 
         return "redirect:/matches";
+    }
+
+    private void validateMatchParameters(Long team1, Long team2, Long winner, boolean isDraw, BindingResult bindingResult) {
+        // Check for null teams
+        if (team1 == null || team2 == null) {
+            bindingResult.addError(new FieldError("match", "team1", "Team IDs cannot be null"));
+            bindingResult.addError(new FieldError("match", "team2", "Team IDs cannot be null"));
+        }
+
+        // Check that teams are not the same
+        if (team1 != null && team2 != null && team1.equals(team2)) {
+            bindingResult.addError(new FieldError("match", "team2", "Teams cannot be the same"));
+        }
     }
 }
