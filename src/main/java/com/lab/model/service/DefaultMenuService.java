@@ -22,12 +22,10 @@ public class DefaultMenuService implements MenuService {
         if (SecurityUtils.userHasRole("MANAGE_ACCOUNTS")) {
             menu.add(createMenuItem("Admin", "/admin", Icon.ARROW_RIGHT, Icon.IconColor.INDIGO));
             menu.add(createMenuItem("Roles", "/admin/roles", Icon.ARROW_RIGHT, Icon.IconColor.INDIGO));
-        }else{
+        } else {
             menu.add(createMenuItem("Home", "/home", Icon.ARROW_RIGHT, Icon.IconColor.INDIGO));
         }
-        if(SecurityUtils.userHasRole("APPROVE_DAYS")){
-            menu.add(createMenuItem("Calendar", "/calendar", Icon.ARROW_RIGHT, Icon.IconColor.INDIGO));
-        }
+        menu.add(createMenuItem("Matches", "/matches", Icon.ARROW_RIGHT, Icon.IconColor.INDIGO));
         return menu;
     }
 
