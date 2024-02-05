@@ -6,6 +6,34 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Match List</title>
+    <script>
+        function updateWinnerOptions() {
+            var team1 = document.getElementById("team1");
+            var team2 = document.getElementById("team2");
+            var winnerDropdown = document.getElementById("winner");
+
+            // Clear existing options
+            winnerDropdown.innerHTML = "";
+
+            // Add options based on selected teams
+            if (team1.value !== "" && team2.value !== "") {
+                var team1Option = document.createElement("option");
+                team1Option.value = team1.value;
+                team1Option.text = "Team 1 (" + team1.options[team1.selectedIndex].text + ")";
+                winnerDropdown.add(team1Option);
+
+                var team2Option = document.createElement("option");
+                team2Option.value = team2.value;
+                team2Option.text = "Team 2 (" + team2.options[team2.selectedIndex].text + ")";
+                winnerDropdown.add(team2Option);
+            }
+        }
+
+        window.onload = function () {
+            updateWinnerOptions();
+        }
+
+    </script>
 </head>
 <body class="flex">
 
@@ -16,13 +44,13 @@
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
         <form th:action="@{/matches/add}" th:method="post" class="flex items-left items-center gap-6 mb-6">
             <label for="team1">Team 1:</label>
-            <select name="team1" id="team1" class="border rounded py-1 px-2 focus:outline-none focus:border-indigo-500">
+            <select name="team1" id="team1" class="border rounded py-1 px-2 focus:outline-none focus:border-indigo-500" onchange="updateWinnerOptions()">
                 <!-- Populate dropdown with team options -->
                 <option th:each="team : ${allTeams}" th:value="${team.id}" th:text="${team.teamName}"></option>
             </select>
 
             <label for="team2">Team 2:</label>
-            <select name="team2" id="team2" class="border rounded py-1 px-2 focus:outline-none focus:border-indigo-500">
+            <select name="team2" id="team2" class="border rounded py-1 px-2 focus:outline-none focus:border-indigo-500" onchange="updateWinnerOptions()">
                 <!-- Populate dropdown with team options -->
                 <option th:each="team : ${allTeams}" th:value="${team.id}" th:text="${team.teamName}"></option>
             </select>
@@ -33,7 +61,6 @@
             <label for="winner">Winner:</label>
             <select name="winner" id="winner" class="border rounded py-1 px-2 focus:outline-none focus:border-indigo-500">
                 <!-- Populate dropdown with team options -->
-                <option th:each="team : ${allTeams}" th:value="${team.id}" th:text="${team.teamName}"></option>
             </select>
             <button type="submit" class="bg-indigo-500 text-white py-1 px-3 rounded hover:bg-indigo-600 focus:outline-none">
                 Add Match

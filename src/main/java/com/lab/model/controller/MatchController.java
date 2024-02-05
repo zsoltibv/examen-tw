@@ -47,7 +47,7 @@ public class MatchController {
     public String addMatch(
             @RequestParam Long team1,
             @RequestParam Long team2,
-            @RequestParam Long winner,
+            @RequestParam(required = false) Long winner,
             @RequestParam(required = false) boolean isDraw) {
 
         // Save the new match
