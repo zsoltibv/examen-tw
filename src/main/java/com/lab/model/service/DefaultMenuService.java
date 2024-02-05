@@ -26,6 +26,7 @@ public class DefaultMenuService implements MenuService {
             menu.add(createMenuItem("Home", "/home", Icon.ARROW_RIGHT, Icon.IconColor.INDIGO));
         }
         menu.add(createMenuItem("Matches", "/matches", Icon.ARROW_RIGHT, Icon.IconColor.INDIGO));
+        menu.add(createMenuItem("Standings", "/standings", Icon.ARROW_RIGHT, Icon.IconColor.INDIGO));
         return menu;
     }
 

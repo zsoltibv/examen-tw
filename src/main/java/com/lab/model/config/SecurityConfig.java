@@ -30,6 +30,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasAnyAuthority("MANAGE_ACCOUNTS")
                         .requestMatchers("/images/public/**").permitAll()
                         .requestMatchers("/matches/**").permitAll()
+                        .requestMatchers("/standings/**").permitAll()
                         .requestMatchers("/home")
                         .authenticated()
                 )
